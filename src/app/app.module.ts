@@ -13,6 +13,7 @@ import { InterceptorAuthService } from './services/interceptor-auth/interceptor-
 import { CustomersListCardComponent } from './components/customers-list-card/customers-list-card.component';
 import { CustomersListItemComponent } from './components/customers-list-item/customers-list-item.component';
 import { NameInitialsPipe } from './pipes/name-initials/name-initials.pipe';
+import { DatePipe } from './pipes/date/date.pipe';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NameInitialsPipe } from './pipes/name-initials/name-initials.pipe';
     SigninCardComponent,
     CustomersListCardComponent,
     CustomersListItemComponent,
-    NameInitialsPipe
+    NameInitialsPipe,
+    DatePipe
   ],
   imports: [
     BrowserModule,
