@@ -1,5 +1,78 @@
+@import '../../../colors';
 :host {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    height: 100%;
+    > section {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: flex-start;
+        flex-grow: 1;
+        > figure.background {
+            display: none;
+        }
+        > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: auto;
+            background-color: rgba($white, 1);
+            > app-customers-list-card {
+                margin: 5rem 0;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 991px) {
+    :host {
+        > section {
+            flex-direction: row;
+            justify-content: flex-end;
+            > figure.background {
+                display: block;
+                position: absolute;
+                z-index: -1;
+                height: 100%;
+                top: 0;
+                margin: 0;
+                padding: 0;
+                background-image: url('../../../assets/images/background_customers.png');
+                background-size: cover;
+                background-repeat: no-repeat;
+                width: 20%;
+                left: 0;
+                transform: none;
+            }
+            > div {
+                flex-grow: unset;
+                align-items: center;
+                height: 100%;
+                flex-basis: 80%;
+                > app-customers-list-card {
+                    width: 100%;
+                    max-width: 800px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    :host {
+        > section {
+            > figure.background {
+                width: 30%;
+            }
+            > div {
+                flex-basis: 70%;
+                > app-customers-list-card {
+                    max-width: 1000px;
+                }
+            }
+        }
+    }
 }

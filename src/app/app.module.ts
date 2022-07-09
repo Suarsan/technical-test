@@ -10,6 +10,8 @@ import { FormComponentsModule } from './modules/form-components/form-components.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerModule } from './modules/spinner/spinner.module';
 import { InterceptorAuthService } from './services/interceptor-auth/interceptor-auth.service';
+import { CustomersListCardComponent } from './components/customers-list-card/customers-list-card.component';
+import { CustomersListItemComponent } from './components/customers-list-item/customers-list-item.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { InterceptorAuthService } from './services/interceptor-auth/interceptor-
     AppComponent,
     SigninComponent,
     CustomersComponent,
-    SigninCardComponent
+    SigninCardComponent,
+    CustomersListCardComponent,
+    CustomersListItemComponent
   ],
   imports: [
     BrowserModule,

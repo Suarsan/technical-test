@@ -1,0 +1,30 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    > div {
+        display: flex;
+        flex-direction: row;
+        padding: 10px 16px 10px 40px;
+        > p {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0;
+            &.photo {
+                width: 12%;
+            }
+            &.user {
+                width: 12%;
+            }
+            &.email {
+                width: 42%;
+            }
+            &.post {
+                width: 12%;
+            }
+            &.date {
+                width: 22%;
+            }
+        }
+    }
+}
