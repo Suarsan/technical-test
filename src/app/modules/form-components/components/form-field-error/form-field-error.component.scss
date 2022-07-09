@@ -1,0 +1,11 @@
+@import '../../colors';
+
+:host {
+    display: flex;
+    flex-direction: column;
+    > span {
+        font-size: 1.2rem;
+        color: red;
+        margin: 1rem 0;
+    }
+}
