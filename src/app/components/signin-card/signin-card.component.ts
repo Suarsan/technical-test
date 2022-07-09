@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user-services/user.service';
 import { passwordValidator } from 'src/app/validators/password.validator';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, take } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { Router } from '@angular/router';
 import { BrowserStorageService } from 'src/app/modules/browser-storage/browser-storage.service';
@@ -35,6 +35,7 @@ export class SigninCardComponent implements OnInit {
     if (this.signInForm.valid) {
       this.loading = true;
       this.userService.signin(this.signInForm.get('user')!.value, this.signInForm.get('password')!.value).pipe(
+        take(1),
         tap((o: UserModel) => this.loading = false),
         tap((o: UserModel) => this.router.navigate([''])),
         catchError((o: any) => { this.loading = false; this.error = o.message; return EMPTY; })
