@@ -3,7 +3,7 @@
         <img [src]="avatar" [alt]="avatar" class="photo" loading="lazy">
     </div>
     <p class="user" [title]="customer.name">{{ customer.name | nameInitials:2 }}</p>
-    <p *ngIf="!(role === 'ADMIN')" class="email" title="Only for Admin users">Only for Admin users</p>
+    <p *ngIf="!(role === 'ADMIN')" class="email disable" title="Only Admin role users can view customers emails accounts. &#13;If you think you should be able to access, please contact with your administrator.">Only for Admin users</p>
     <p *ngIf="role === 'ADMIN'" class="email" [title]="customer.email">{{ customer.email }}</p>
     <p class="post" [title]="customer.posts.length">{{ customer.posts.length }}</p>
     <p class="date" [title]="date | date">{{ date | date }}</p>
