@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerModel } from 'src/app/models/customer.model';
-import { CustomerService } from 'src/app/services/customer-services/customer.service';
+import { Store } from '@ngrx/store';
+import { loadCustomers } from 'src/app/state/actions/customers.action';
+import { selectCustomers, selectLoadingCustomers } from 'src/app/state/selectors/customers.selector';
 import { tap } from 'rxjs/operators';
+import { AppState } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-customers-list-card',
@@ -10,16 +13,22 @@ import { tap } from 'rxjs/operators';
 })
 export class CustomersListCardComponent implements OnInit {
 
-  customers: CustomerModel[];
+  customers: readonly CustomerModel[];
+  loading: boolean;
 
-  constructor(private customerService: CustomerService) { 
+  constructor(private store: Store<AppState>) { 
     this.customers = [];
+    this.loading = false;
   }
 
-  ngOnInit(): void { 
-    this.customerService.getCustomers().pipe(
-      tap((o: CustomerModel[]) => this.customers = o)
+  ngOnInit(): void {
+    this.store.select(selectLoadingCustomers).pipe(
+      tap((o: boolean) => this.loading = o),
     ).subscribe();
+    this.store.select(selectCustomers).pipe(
+      tap((o: readonly CustomerModel[]) => this.customers = o),
+    ).subscribe();
+    this.store.dispatch(loadCustomers());
   }
 
 }

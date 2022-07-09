@@ -1,9 +1,14 @@
-.lds-ripple {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
-  }
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .lds-ripple {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
   .lds-ripple div {
     position: absolute;
     border: 4px solid rgb(39, 51, 217);
@@ -44,3 +49,4 @@
       opacity: 0;
     }
   }
+}

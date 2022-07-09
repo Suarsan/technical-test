@@ -5,6 +5,7 @@ import { map, tap } from 'rxjs/operators';
 import { CustomerDaoService } from 'src/app/daos/customer-daos/customer-dao.service';
 import { CustomerModel } from 'src/app/models/customer.model';
 import { SubjectModel } from 'src/app/models/subject.model';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class CustomerService {
   public getCustomers(): Observable<CustomerModel[] | any> {
     return this.customerDaoService.getCustomers().pipe(
       tap((o: CustomerModel[]) => !isDevMode() || console.dir(o)),
+      delay(1000),
       map((o: CustomerModel[]) => o),
       catchError((error: any) => { console.dir(error); return error; })
     );

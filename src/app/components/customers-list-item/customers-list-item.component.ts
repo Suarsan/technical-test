@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { CustomerModel } from 'src/app/models/customer.model';
 import { SubjectModel } from 'src/app/models/subject.model';

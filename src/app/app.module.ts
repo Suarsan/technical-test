@@ -14,6 +14,11 @@ import { CustomersListCardComponent } from './components/customers-list-card/cus
 import { CustomersListItemComponent } from './components/customers-list-item/customers-list-item.component';
 import { NameInitialsPipe } from './pipes/name-initials/name-initials.pipe';
 import { DatePipe } from './pipes/date/date.pipe';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ROOT_REDUCERS } from './state/app.state';
+import { EffectsModule } from '@ngrx/effects';
+import { CustomersEffects } from './state/effects/customers.effect';
 
 
 @NgModule({
@@ -35,7 +40,10 @@ import { DatePipe } from './pipes/date/date.pipe';
     HttpClientModule,
     AppRoutingModule,
     HttpClientModule,
-    SpinnerModule
+    SpinnerModule,
+    StoreModule.forRoot(ROOT_REDUCERS),
+    StoreDevtoolsModule.instrument({ name: 'TEST' }),
+    EffectsModule.forRoot([CustomersEffects])
   ],
   providers: [
     {
