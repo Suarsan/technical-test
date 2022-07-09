@@ -14,7 +14,7 @@ export class SessionGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      // Insecure. ¿Token validation? ¿Resolver? ¿Check role value against available roles list? ¿Encrypt browserStorage?
+      // Insecure. Token validation? Resolver? Check role value against available roles list? Encrypt browserStorage?
       if (this.browserStorageService.getRole() && this.browserStorageService.getToken()) {
         return true;
       }
