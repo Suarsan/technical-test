@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,7 @@ import { SigninCardComponent } from './components/signin-card/signin-card.compon
 import { FormComponentsModule } from './modules/form-components/form-components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerModule } from './modules/spinner/spinner.module';
+import { InterceptorAuthService } from './services/interceptor-auth/interceptor-auth.service';
 
 
 @NgModule({
@@ -28,7 +29,13 @@ import { SpinnerModule } from './modules/spinner/spinner.module';
     HttpClientModule,
     SpinnerModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorAuthService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
