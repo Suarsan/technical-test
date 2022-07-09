@@ -3,7 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user-services/user.service';
 import { passwordValidator } from 'src/app/validators/password.validator';
-import { tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signin-card',
@@ -16,18 +18,23 @@ export class SigninCardComponent implements OnInit {
     user: new FormControl(null, Validators.required),
     password: new FormControl(null, [Validators.required, passwordValidator])
   });
+  loading: boolean;
+  error!: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) { 
+    this.loading = false;
+  }
 
   ngOnInit(): void { }
 
   public signIn(e: any) {
     e.stopPropagation();
     if (this.signInForm.valid) {
-      console.dir(this.signInForm.get('user')!.value);
-      console.dir(this.signInForm.get('password')!.value);
+      this.loading = true;
       this.userService.signin(this.signInForm.get('user')!.value, this.signInForm.get('password')!.value).pipe(
-        tap((o: UserModel) => console.dir(o))
+        tap((o: UserModel) => this.loading = false),
+        tap((o: UserModel) => console.dir(o)),
+        catchError((o: HttpErrorResponse) => { this.loading = false; this.error = o.message; return EMPTY; })
       ).subscribe();
     } else {
       this.signInForm.markAsTouched();

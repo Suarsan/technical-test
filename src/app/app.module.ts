@@ -8,6 +8,7 @@ import { CustomersComponent } from './views/customers/customers.component';
 import { SigninCardComponent } from './components/signin-card/signin-card.component';
 import { FormComponentsModule } from './modules/form-components/form-components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SpinnerModule } from './modules/spinner/spinner.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormComponentsModule,
     HttpClientModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

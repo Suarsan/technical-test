@@ -1,16 +1,19 @@
 <article>
-    <h3>Welcome back</h3>
-    <h2>Login to your account</h2>
-    <form [formGroup]="signInForm">
-        <app-form-field label="User">
-            <input id="user" type="text" formControlName="user" placeholder="imput">
-            <app-form-field-error *ngIf="signInForm.get('user')!.touched && signInForm.get('user')!.hasError('required')">Required</app-form-field-error>
-        </app-form-field>
-        <app-form-field label="Password">
-            <input id="password" type="password" formControlName="password" placeholder="imput">
-            <app-form-field-error *ngIf="signInForm.get('password')!.touched && signInForm.get('password')!.hasError('required')">Required</app-form-field-error>
-            <app-form-field-error *ngIf="signInForm.get('password')!.touched && signInForm.get('password')!.hasError('invalid_password') && !signInForm.get('password')!.hasError('required')">It must contain 6 digits and a capital letter</app-form-field-error>
-        </app-form-field>
-        <app-form-button (click)="signIn($event)">Login now</app-form-button>
-    </form>
+    <ng-container *ngIf="!loading">
+        <h3>Welcome back</h3>
+        <h2>Login to your account</h2>
+        <form [formGroup]="signInForm">
+            <app-form-field label="User">
+                <input id="user" type="text" formControlName="user" placeholder="imput">
+                <app-form-field-error *ngIf="signInForm.get('user')!.touched && signInForm.get('user')!.hasError('required')">Required</app-form-field-error>
+            </app-form-field>
+            <app-form-field label="Password">
+                <input id="password" type="password" formControlName="password" placeholder="imput">
+                <app-form-field-error *ngIf="signInForm.get('password')!.touched && signInForm.get('password')!.hasError('required')">Required</app-form-field-error>
+                <app-form-field-error *ngIf="signInForm.get('password')!.touched && signInForm.get('password')!.hasError('invalid_password') && !signInForm.get('password')!.hasError('required')">It must contain 6 digits and a capital letter</app-form-field-error>
+            </app-form-field>
+            <app-form-button (click)="signIn($event)">Login now</app-form-button>
+        </form>
+    </ng-container>
+    <app-spinner *ngIf="loading"></app-spinner>
 </article>
