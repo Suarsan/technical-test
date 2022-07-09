@@ -1,0 +1,20 @@
+@import '../../colors';
+:host {
+    display: flex;
+    flex-direction: column;
+    > button {
+        font-size: 1.4rem;
+        font-weight: 600;
+        padding: 2rem;
+        margin: 2rem 0 0 0;
+        border: 1px solid rgba($primary, 1);
+        border-radius: 5px;
+        background-color: rgba($primary, 1);
+        color: rgba($white, 1);
+        letter-spacing: 1px;
+        &:hover {
+            background-color: rgba($primarydark, 1);
+            cursor: pointer;
+        }
+    }
+}

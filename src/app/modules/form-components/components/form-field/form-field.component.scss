@@ -1,0 +1,29 @@
+@import '../../colors';
+:host {
+    display: flex;
+    flex-direction: column;
+    > div {
+        display: flex;
+        flex-direction: column;
+        > label {
+            font-size: 1.4rem;
+            margin: 2rem 0 0 0;
+        }
+    }
+}
+::ng-deep div > input {
+    margin: 1rem 0 0 0;
+    padding: 2rem 1.5rem;
+    border: 1px solid rgba($gray, 1);
+    border-radius: 5px;
+    &::placeholder {
+        color: rgba($gray, .5);
+    }
+    &:disabled {
+        border-color: rgba($gray, .25);
+        background-color: rgba($white, 1);
+        &::placeholder {
+            color: rgba($gray, .25);
+        }
+    }
+}

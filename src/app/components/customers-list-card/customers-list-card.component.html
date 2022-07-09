@@ -1,0 +1,11 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<ng-container *ngIf="!loading">
+    <div>
+        <p class="photo">Photo</p>
+        <p class="user">User</p>
+        <p class="email">Email</p>
+        <p class="post">Post</p>
+        <p class="date">Date</p>
+    </div>
+    <app-customers-list-item *ngFor="let customer of customers" [customer]="customer"></app-customers-list-item>
+</ng-container>
