@@ -6,6 +6,8 @@ import { selectCustomers, selectLoadingCustomers } from 'src/app/state/selectors
 import { tap } from 'rxjs/operators';
 import { AppState } from 'src/app/state/app.state';
 import { Subscription } from 'rxjs';
+import { FormDialogService } from 'src/app/modules/form-components/components/form-dialog/form-dialog.service';
+import { CustomerDetailDialogComponent } from '../customer-detail-dialog/customer-detail-dialog.component';
 
 @Component({
   selector: 'app-customers-list-card',
@@ -19,7 +21,8 @@ export class CustomersListCardComponent implements OnInit {
   selectLoadingCustomersSubscription?: Subscription;
   selectCustomersSubscription?: Subscription;
 
-  constructor(private store: Store<AppState>) { 
+  constructor(private store: Store<AppState>,
+    private formDialogService: FormDialogService) { 
     this.customers = [];
     this.loading = false;
   }
@@ -32,6 +35,10 @@ export class CustomersListCardComponent implements OnInit {
       tap((o: readonly CustomerModel[]) => this.customers = o),
     ).subscribe();
     this.store.dispatch(loadCustomers());
+  }
+
+  public openModal(customer: CustomerModel) {
+    this.formDialogService.open(CustomerDetailDialogComponent, { modal: true, data: { customer } });
   }
 
   ngOnDestroy() {

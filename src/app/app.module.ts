@@ -19,6 +19,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from './state/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { CustomersEffects } from './state/effects/customers.effect';
+import { CustomerDetailDialogComponent } from './components/customer-detail-dialog/customer-detail-dialog.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CustomersEffects } from './state/effects/customers.effect';
     CustomersListCardComponent,
     CustomersListItemComponent,
     NameInitialsPipe,
-    DatePipe
+    DatePipe,
+    CustomerDetailDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,9 @@ import { CustomersEffects } from './state/effects/customers.effect';
       useClass: InterceptorAuthService,
       multi: true
     }
+  ],
+  entryComponents: [
+    CustomerDetailDialogComponent
   ],
   bootstrap: [AppComponent]
 })

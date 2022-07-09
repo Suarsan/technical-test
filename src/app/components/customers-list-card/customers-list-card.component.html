@@ -7,5 +7,5 @@
         <p class="post">Post</p>
         <p class="date">Date</p>
     </div>
-    <app-customers-list-item *ngFor="let customer of customers" [customer]="customer"></app-customers-list-item>
+    <app-customers-list-item *ngFor="let customer of customers" [customer]="customer" (click)="openModal(customer)"></app-customers-list-item>
 </ng-container>
