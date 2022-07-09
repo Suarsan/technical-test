@@ -14,6 +14,7 @@
             </app-form-field>
             <app-form-button (click)="signIn($event)">Login now</app-form-button>
         </form>
+        <h6>{{ error }}</h6>
     </ng-container>
     <app-spinner *ngIf="loading"></app-spinner>
 </article>
