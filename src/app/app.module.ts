@@ -12,6 +12,7 @@ import { SpinnerModule } from './modules/spinner/spinner.module';
 import { InterceptorAuthService } from './services/interceptor-auth/interceptor-auth.service';
 import { CustomersListCardComponent } from './components/customers-list-card/customers-list-card.component';
 import { CustomersListItemComponent } from './components/customers-list-item/customers-list-item.component';
+import { NameInitialsPipe } from './pipes/name-initials/name-initials.pipe';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CustomersListItemComponent } from './components/customers-list-item/cus
     CustomersComponent,
     SigninCardComponent,
     CustomersListCardComponent,
-    CustomersListItemComponent
+    CustomersListItemComponent,
+    NameInitialsPipe
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@
     <div>
         <img [src]="avatar" [alt]="avatar" class="photo" loading="lazy">
     </div>
-    <p class="user">{{ customer.name }}</p>
+    <p class="user" [title]="customer.name">{{ customer.name | nameInitials:2 }}</p>
     <p *ngIf="!(role === 'ADMIN')" class="email">Only for Admin users</p>
     <p *ngIf="role === 'ADMIN'" class="email">{{ customer.email }}</p>
     <p class="post">{{ customer.posts.length }}</p>
