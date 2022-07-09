@@ -5,11 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class BrowserStorageService {
 
+  private tokenID = 'APP_TK';
+  private roleID = 'APP_RO';
+
   constructor() { }
 
   public setToken(token: string): void {
     try {
-      sessionStorage.setItem('APP_TK', token);
+      sessionStorage.setItem(this.tokenID, token);
     } catch (e) {
       console.log('Error saving token at browser')
     }
@@ -17,15 +20,15 @@ export class BrowserStorageService {
 
   public getToken(): string | undefined | null | void {
     try {
-      return sessionStorage.getItem('APP_TK');
+      return sessionStorage.getItem(this.tokenID);
     } catch (e) {
       console.log('Error saving token at browser')
     }
   }
 
-  public setRole(token: string): void {
+  public setRole(role: string): void {
     try {
-      sessionStorage.setItem('APP_RO', token);
+      sessionStorage.setItem(this.roleID, role);
     } catch (e) {
       console.log('Error saving token at browser')
     }
@@ -33,9 +36,14 @@ export class BrowserStorageService {
 
   public getRole(): string | undefined | null | void {
     try {
-      return sessionStorage.getItem('APP_RO');
+      return sessionStorage.getItem(this.roleID);
     } catch (e) {
       console.log('Error saving role at browser')
     }
+  }
+
+  public deleteAll() {
+    sessionStorage.removeItem(this.tokenID);
+    sessionStorage.removeItem(this.roleID);
   }
 }
