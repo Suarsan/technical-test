@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from 'src/app/models/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDaoService {
 
-  private BASE_URL = 'http://localhost:3000/';
+  private BASE_URL = environment.api_url;
 
   constructor(private http: HttpClient) { }
 
