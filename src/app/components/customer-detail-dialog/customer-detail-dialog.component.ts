@@ -13,7 +13,6 @@ export class CustomerDetailDialogComponent implements OnInit {
 
   constructor(public data: FormDialogOptions) { 
     this.customer = this.data.data.customer;
-    console.dir(this.customer)
   }
 
   ngOnInit(): void {
