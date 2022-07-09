@@ -20,7 +20,7 @@ export class UserService {
       tap((o: UserModel) => this.browserStorageService.setToken(o.token)),
       tap((o: UserModel) => this.browserStorageService.setRole(o.role)),
       map((o: UserModel) => o),
-      catchError(error => { console.dir(error); return error; })
+      catchError((error: any) => { console.dir(error); return error; })
     );
   }
 }
