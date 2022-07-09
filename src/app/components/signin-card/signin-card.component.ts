@@ -6,6 +6,8 @@ import { passwordValidator } from 'src/app/validators/password.validator';
 import { catchError, tap } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { BrowserStorageService } from 'src/app/modules/browser-storage/browser-storage.service';
 
 @Component({
   selector: 'app-signin-card',
@@ -21,8 +23,11 @@ export class SigninCardComponent implements OnInit {
   loading: boolean;
   error!: string;
 
-  constructor(private userService: UserService) { 
+  constructor(private userService: UserService,
+              private browserStorageService: BrowserStorageService,
+              private router: Router) { 
     this.loading = false;
+    this.browserStorageService.deleteAll();
   }
 
   ngOnInit(): void { }
@@ -33,7 +38,7 @@ export class SigninCardComponent implements OnInit {
       this.loading = true;
       this.userService.signin(this.signInForm.get('user')!.value, this.signInForm.get('password')!.value).pipe(
         tap((o: UserModel) => this.loading = false),
-        tap((o: UserModel) => console.dir(o)),
+        tap((o: UserModel) => this.router.navigate([''])),
         catchError((o: HttpErrorResponse) => { this.loading = false; this.error = o.message; return EMPTY; })
       ).subscribe();
     } else {
