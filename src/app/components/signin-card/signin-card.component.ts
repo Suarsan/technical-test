@@ -31,8 +31,7 @@ export class SigninCardComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  public signIn(e: any) {
-    e.stopPropagation();
+  public signIn() {
     if (this.signInForm.valid) {
       this.loading = true;
       this.userService.signin(this.signInForm.get('user')!.value, this.signInForm.get('password')!.value).pipe(
