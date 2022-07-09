@@ -18,6 +18,7 @@ export class CustomersListCardComponent implements OnInit {
 
   customers: readonly CustomerModel[];
   loading: boolean;
+  companyFilterKey: string;
   selectLoadingCustomersSubscription?: Subscription;
   selectCustomersSubscription?: Subscription;
 
@@ -25,6 +26,7 @@ export class CustomersListCardComponent implements OnInit {
     private formDialogService: FormDialogService) { 
     this.customers = [];
     this.loading = false;
+    this.companyFilterKey = 'Yoigo';
   }
 
   ngOnInit(): void {
@@ -32,13 +34,17 @@ export class CustomersListCardComponent implements OnInit {
       tap((o: boolean) => this.loading = o),
     ).subscribe();
     this.selectCustomersSubscription = this.store.select(selectCustomers).pipe(
-      tap((o: readonly CustomerModel[]) => this.customers = o),
+      tap((o: readonly CustomerModel[]) => this.customers = this.sortByName(o)),
     ).subscribe();
     this.store.dispatch(loadCustomers());
   }
 
   public openModal(customer: CustomerModel) {
     this.formDialogService.open(CustomerDetailDialogComponent, { modal: true, data: { customer } });
+  }
+
+  private sortByName(values: readonly CustomerModel[]) {
+    return values.slice().sort((a, b) => (a.name > b.name) ? 1 : (a.name < b.name) ? -1 : 0)
   }
 
   ngOnDestroy() {

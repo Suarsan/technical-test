@@ -20,7 +20,7 @@ import { ROOT_REDUCERS } from './state/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { CustomersEffects } from './state/effects/customers.effect';
 import { CustomerDetailDialogComponent } from './components/customer-detail-dialog/customer-detail-dialog.component';
-
+import { FilterByCompanyNamePipe } from './pipes/filter-by-company-name/filter-by-company-name.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { CustomerDetailDialogComponent } from './components/customer-detail-dial
     CustomersListItemComponent,
     NameInitialsPipe,
     DatePipe,
-    CustomerDetailDialogComponent
+    CustomerDetailDialogComponent,
+    FilterByCompanyNamePipe
   ],
   imports: [
     BrowserModule,
